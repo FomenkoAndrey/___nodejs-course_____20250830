@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0"
+        name="viewport">
+
+  <title>Socket.io Test</title>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+  <script>
+    const socket = io('http://localhost:3000');
+
+    socket.on('connect', () => {
+      console.log('Підключено до сервера');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Відключено від сервера');
+    });
+  </script>
+</head>
+<body>
+<h1>Socket.io Test</h1>
+</body>
+</html>

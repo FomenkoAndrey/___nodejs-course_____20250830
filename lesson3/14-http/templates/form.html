@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+  <title>HTTP server</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif
+    }
+
+    .container {
+      width: min(100% - 40px, 992px);
+      margin-inline: auto;
+    }
+
+    .mb-3 {
+      margin-bottom: 15px;
+    }
+
+    form {
+      margin: auto;
+    }
+
+    label {
+      display: block;
+    }
+
+    button,
+    input {
+      display: block;
+      padding: 7px 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      width: auto;
+    }
+
+    input[type="checkbox"] + label {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class='container'>
+
+    <form action='/todos' method='post'>
+      <div class='mb-3'>
+        <label for='id'>ID</label>
+        <input id='id' name='id' placeholder='ID...' type='number' value='99'>
+      </div>
+      <div class='mb-3'>
+        <label for='title'>Title</label>
+        <input id='title' name='title' placeholder='Title...' type='text' value='New todo title'>
+      </div>
+      <div class='mb-3'>
+        <label for='userId'>User ID</label>
+        <input id='userId' name='userId' placeholder='User ID...' type='number' value='9'>
+      </div>
+      <div class='mb-3'>
+        <input id='completed' checked name='completed' placeholder='Completed...' type='checkbox'>
+        <label for='completed'>Completed</label>
+      </div>
+      <button type='submit'>Submit</button>
+    </form>
+
+  </div>
+
+</body>
+
+</html>
