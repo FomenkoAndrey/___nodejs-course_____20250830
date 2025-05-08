@@ -1,0 +1,18 @@
+{
+  "name": "example-debug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env DEBUG='server:*' node server.mjs",
+    "start:data": "cross-env DEBUG='server:data' node server.mjs",
+    "start:connect": "cross-env DEBUG='server:connection:connect' node server.mjs",
+    "start:connection": "cross-env DEBUG='server:connection:connect,server:connection:disconnect' node server.mjs"
+  },
+  "dependencies": {
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

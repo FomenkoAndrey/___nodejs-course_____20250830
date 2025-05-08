@@ -1,0 +1,14 @@
+{
+  "name": "ex.1.cross-env",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node index.mjs",
+    "prod": "cross-env NODE_ENV=production node index.mjs",
+    "test": "cross-env USER=admin API=base node index.mjs"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

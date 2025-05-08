@@ -1,0 +1,16 @@
+{
+  "name": "example-debug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env DEBUG='server:*' node server.mjs"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
