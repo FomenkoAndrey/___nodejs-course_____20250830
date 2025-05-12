@@ -1,0 +1,20 @@
+{
+  "name": "___nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FomenkoAndrey/___nodejs-course_____20250421.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FomenkoAndrey/___nodejs-course_____20250421/issues"
+  },
+  "homepage": "https://github.com/FomenkoAndrey/___nodejs-course_____20250421#readme",
+  "description": ""
+}
