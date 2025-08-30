@@ -8,9 +8,8 @@
 //
 // console.log('Node version OK!', process.release.lts)
 
-// ! 2if (!process.release.lts) {
+// ! 2
+// if (!process.release.lts) {
 //   throw new Error('Wrong node.js version')
 // }
-
-
-console.log('Node version OK!', process.release.lts)
+// console.log('Node version OK!', process.release.lts)

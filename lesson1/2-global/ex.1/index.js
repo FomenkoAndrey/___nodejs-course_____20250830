@@ -15,5 +15,5 @@
 // console.log(b === global.b)
 
 // ! 4
-globalThis.i = 99
-console.log(globalThis.i)
+// globalThis.i = 99
+// console.log(globalThis.i)

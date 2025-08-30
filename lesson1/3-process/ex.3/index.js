@@ -5,4 +5,5 @@ process.on('exit', (code) => {
   }
 })
 
+// var a = 5
 console.log(a)

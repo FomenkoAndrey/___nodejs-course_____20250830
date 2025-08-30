@@ -1,4 +1,4 @@
-// if (process.versions.node !== '20.17.0') {
+// if (process.versions.node !== '22.19.0') {
 //   throw new Error('Wrong node.js version')
 // }
 //
