@@ -1,4 +1,3 @@
-// Модель для todos
 export const todos = [
   {
     userId: 1,
@@ -32,13 +31,11 @@ export const todos = [
   }
 ]
 
-// Функція для додавання нового todo
 export const addTodo = (todo) => {
   todos.push(todo)
   return todo
 }
 
-// Функція для валідації todo
 export const validateTodo = (todo) => {
   if (!todo) return false
   if (typeof todo.id !== 'number') return false

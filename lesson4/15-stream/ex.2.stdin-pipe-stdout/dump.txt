@@ -1,3 +1,0 @@
-hello world
-best js
-good bye

@@ -2,7 +2,7 @@
 export const log = (message, data = null) => {
   const timestamp = new Date().toISOString()
   const logMessage = `[${timestamp}] ${message}`
-
+  
   if (data) {
     console.log(logMessage, data)
   } else {
@@ -14,7 +14,7 @@ export const log = (message, data = null) => {
 export const error = (message, error = null) => {
   const timestamp = new Date().toISOString()
   const logMessage = `[${timestamp}] [ERROR] ${message}`
-
+  
   if (error) {
     console.error(logMessage, error)
   } else {
@@ -25,4 +25,4 @@ export const error = (message, error = null) => {
 // Аліаси для сумісності з існуючим кодом
 export const warn = log
 export const info = log
-export const debug = log
+export const debug = log 

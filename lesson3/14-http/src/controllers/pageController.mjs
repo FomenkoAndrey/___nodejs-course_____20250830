@@ -1,47 +1,37 @@
-import { rootHtmlTemplate } from '../utils/templates.mjs'
+import { rootHtmlTemplate, notFoundTemplate } from '../utils/templates.mjs'
 import * as logger from '../utils/logger.mjs'
+import { handleControllerError } from '../middleware/errorHandlers.mjs'
+import { HTTP_STATUS, CONTENT_TYPE } from '../config/http.mjs'
 
-// root
 export const getHomePage = async (req, res) => {
   try {
-    logger.log('Відображення головної сторінки')
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    logger.log('Home page loaded')
+    res.statusCode = HTTP_STATUS.OK
+    res.setHeader('Content-Type', CONTENT_TYPE.HTML)
     res.end(rootHtmlTemplate)
   } catch (error) {
-    logger.error('Помилка при відображенні головної сторінки', error)
-    res.statusCode = 500
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    res.end('Внутрішня помилка сервера')
+    handleControllerError(error, res, 'Error getting home page')
   }
 }
 
-// text
 export const getTextPage = async (req, res) => {
   try {
-    logger.log('Відображення текстової сторінки')
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    res.end('Текстова сторінка для прикладу')
+    logger.log('Text page loaded')
+    res.statusCode = HTTP_STATUS.OK
+    res.setHeader('Content-Type', CONTENT_TYPE.TEXT)
+    res.end('Plain text response: Hello from HTTP server')
   } catch (error) {
-    logger.error('Помилка при відображенні текстової сторінки', error)
-    res.statusCode = 500
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    res.end('Внутрішня помилка сервера')
+    handleControllerError(error, res, 'Error getting text page')
   }
 }
 
-// Not found
 export const getNotFoundPage = async (req, res) => {
   try {
-    logger.log(`Сторінку не знайдено: ${req.url}`)
-    res.statusCode = 404
-    res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.end(notFoundHtmlTemplate)
+    logger.log('Not found page loaded')
+    res.statusCode = HTTP_STATUS.NOT_FOUND
+    res.setHeader('Content-Type', CONTENT_TYPE.HTML)
+    res.end(notFoundTemplate)
   } catch (error) {
-    logger.error(`Помилка при відображенні сторінки 404: ${error}`)
-    res.statusCode = 500
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    res.end('Внутрішня помилка сервера')
+    handleControllerError(error, res, 'Error getting not found page')
   }
 }

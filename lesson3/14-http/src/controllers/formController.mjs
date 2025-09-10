@@ -1,5 +1,7 @@
 import { loadFormTemplate } from '../utils/templates.mjs'
 import * as logger from '../utils/logger.mjs'
+import { handleControllerError } from '../middleware/errorHandlers.mjs'
+import { HTTP_STATUS, CONTENT_TYPE } from '../config/http.mjs'
 
 let formTemplate = null
 
@@ -10,24 +12,19 @@ export const initFormTemplate = async () => {
 
 export const getForm = async (req, res) => {
   try {
-    logger.log('Відображення форми')
+    logger.log('Form template loaded')
 
     if (!formTemplate) {
-      formTemplate = await initFormTemplate()
-      logger.error('Шаблон форми не знайдений')
-      res.statusCode = 500
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-      res.end('Помилка: Шаблон форми не знайдений')
-
+      logger.error('Form template not loaded')
+      res.statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR
+      res.setHeader('Content-Type', CONTENT_TYPE.TEXT)
+      res.end('Form template not loaded')
     } else {
-      res.statusCode = 200
-      res.setHeader('Content-Type', 'text/html; charset=utf-8')
+      res.statusCode = HTTP_STATUS.OK
+      res.setHeader('Content-Type', CONTENT_TYPE.HTML)
       res.end(formTemplate)
     }
   } catch (error) {
-    logger.error('Помилка при відображенні форми', error)
-    res.statusCode = 500
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    res.end('Внутрішня помилка сервера')
+    handleControllerError(error, res, 'Error getting form template')
   }
 }

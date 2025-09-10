@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
 import { FILE_PATHS } from '../config/index.mjs'
+import * as logger from './logger.mjs'
 
-// Функція для створення HTML шаблону
 export const createHTMLTemplate = (htmlInjection) => `
     <!DOCTYPE html>
     <html lang='en'>
@@ -21,7 +21,6 @@ export const createHTMLTemplate = (htmlInjection) => `
     </html>
     `
 
-// Базові шаблони
 export const rootHtmlTemplate = createHTMLTemplate(
   '<h1>Hello from HTTP server</h1><a href="/form">Form</a>&nbsp;<a href="/todos">Todos</a>'
 )
@@ -35,13 +34,13 @@ export const generateTodosTemplate = (todos) => {
   const todosHTML = todos
     .map(
       (todo) => `
-    <div>
-      <h2>${todo.title}</h2>
-      <p>User ID: ${todo.userId}</p>
-      <p>ID: ${todo.id}</p>
-      <p>Completed: ${todo.completed ? 'Yes' : 'No'}</p>
-    </div>
-  `
+        <div>
+          <h2>${todo.title}</h2>
+          <p>User ID: ${todo.userId}</p>
+          <p>ID: ${todo.id}</p>
+          <p>Completed: ${todo.completed ? 'Yes' : 'No'}</p>
+        </div>
+      `
     )
     .join('')
 
@@ -52,19 +51,17 @@ export const generateTodosTemplate = (todos) => {
   return createHTMLTemplate(`${headerHTML}${todosHTML}${buttonHTML}`)
 }
 
-// Завантаження шаблону форми
 export const loadTemplate = async (path) => {
   try {
     const fileContent = await fs.readFile(path, 'utf-8')
-    console.log(`Шаблон ${path} завантажено`)
+    logger.log(`Шаблон ${path} завантажено`)
     return fileContent
   } catch (err) {
-    console.error(`Помилка читання файлу ${path}:`, err)
+    logger.error(`Помилка читання файлу ${path}:`, err)
     return null
   }
 }
 
-// Завантаження шаблону форми
 export const loadFormTemplate = async () => {
   return await loadTemplate(FILE_PATHS.FORM_TEMPLATE)
 }

@@ -1,31 +1,35 @@
 import http from 'http'
-import { setupGlobalErrorHandlers } from './middleware/errorHandler.mjs'
-import { handleRequest } from './routers/router.mjs'
-import { initFormTemplate } from './controllers/formController.mjs'
-import { SERVER_CONFIG } from './config/index.mjs'
+import { generateHTML, generateText, generateJSON, generateNotFound, postData, generateForm } from './api.mjs'
 
-setupGlobalErrorHandlers()
+const PORT = 3000
 
-initFormTemplate().catch((error) => {
-  console.error('Помилка при ініціалізації шаблону форми:', error)
+const server = http.createServer((req, res) => {
+  if (req.url === '/' && req.method === 'GET') {
+    return generateHTML(req, res)
+  }
+
+  if (req.url === '/text' && req.method === 'GET') {
+    return generateText(req, res)
+  }
+
+  if (req.url === '/json' && req.method === 'GET') {
+    return generateJSON(req, res)
+  }
+
+  if (req.url === '/todos' && req.method === 'GET') {
+    return generateJSON(req, res)
+  }
+  if (req.url === '/todos' && req.method === 'POST') {
+    return postData(req, res)
+  }
+
+  if (req.url === '/form' && req.method === 'GET') {
+    return generateForm(req, res)
+  }
+
+  generateNotFound(req, res)
 })
 
-const server = http.createServer(handleRequest)
-
-server.listen(SERVER_CONFIG.PORT, () => {
-  console.log(`Server is running on port http://${SERVER_CONFIG.HOST}:${SERVER_CONFIG.PORT}`)
-})
-
-process.on('SIGINT', () => {
-  console.log('Сервер переривається користувачем (Ctrl+C)...')
-  server.close(() => {
-    console.log('Сервер закрито після переривання')
-  })
-})
-
-process.on('SIGTERM', () => {
-  console.log('Сервер отримав запит на завершення від системи...')
-  server.close(() => {
-    console.log('Сервер закрито після системного запиту')
-  })
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`)
 })
