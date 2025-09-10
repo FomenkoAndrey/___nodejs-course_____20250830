@@ -11,4 +11,4 @@ function fib(n) {
   })
 }
 
-fib(40).then((res) => console.log(res))
+fib(10).then((res) => console.log(res))

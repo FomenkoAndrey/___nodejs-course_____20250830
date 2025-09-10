@@ -11,4 +11,3 @@ async function copyAndAppend() {
 }
 
 copyAndAppend().catch(console.log)
-// copyAndAppend().catch(err => console.log(err.message))

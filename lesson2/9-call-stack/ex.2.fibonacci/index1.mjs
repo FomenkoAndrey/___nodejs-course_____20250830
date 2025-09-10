@@ -10,7 +10,7 @@ function fib(n) {
 }
 
 console.log(fib(10))
-console.log(fib(50))
+console.log(fib(40))
 
 // ! Числа Фібоначчі можна розрахувати за допомогою наступної формули:
 //
